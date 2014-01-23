@@ -1,31 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Zoom Viewer</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>jquery.iviewer demo</title>
+    <link type="text/css" rel="stylesheet" href="http://dui.dooioo.com/public/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="http://dui.dooioo.com/public/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="./js/zoom-viewer.js"></script>
 </head>
-<body> 
-	
-<div class="zoombox">
-	<img src="pic.png">
-</div>
+<body>
+<header class="iviewer_header">
+    <div class="iviewer_header_wrapper clearfix">
+        <h1> 图片标题、描述 </h1>
 
-<div class="zoombox">
-	<img src="pic2.jpg">
-</div>
+        <div class="iviewer_control">
+            <div class="iviewer_prev iviewer_common iviewer_button"></div>
+            <div class="iviewer_next iviewer_common iviewer_button"></div>
+            <div class="iviewer_zoom_in iviewer_common iviewer_button"></div>
+            <div class="iviewer_zoom_out iviewer_common iviewer_button"></div>
+            <div class="iviewer_zoom_zero iviewer_common iviewer_button"></div>
+            <div class="iviewer_zoom_fit iviewer_common iviewer_button"></div>
+            <div class="iviewer_zoom_status iviewer_common">92%</div>
+            <div class="iviewer_rotate_left iviewer_common iviewer_button"></div>
+            <div class="iviewer_rotate_right iviewer_common iviewer_button"></div>
+        </div>
+    </div>
+</header>
 
-<div style="float:left;">
-	<a href="javascript:;" class="js_rotateLeft">左旋转</a>
-	<a href="javascript:;" class="js_rotateRight">右旋转</a>
-</div>
-</body>
-<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="zoom-viewer.js"></script>
+<div id="viewer" class="viewer"></div>
+
+
 
 <script type="text/javascript">
-		
-	$('.zoombox').zoomViewer();
+	$(function(){
 
+		 var imgList = [
+            {
+               src: 'http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg',
+               title: '图片1'
+            },
+            {
+               src: 'http://130.dooioo.com/images/2013/1021/6BF4064D9F874C929BAB542356ED889B.jpg_960x960.jpg',
+               title: '图片2'
+            },
+            {
+               src: 'http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg',
+               title: '图片3'
+            },
+            {
+                src: 'http://130.dooioo.com/images/2013/1021/6BF4064D9F874C929BAB542356ED889B.jpg_960x960.jpg',
+                title: '图片4'
+            }
+        ];
+		var zoomViewer = $("#viewer").zoomViewer({
+            imgList: imgList,
+            src: 'http://130.dooioo.com/images/2013/1021/6BF4064D9F874C929BAB542356ED889B.jpg_960x960.jpg',
+            currentIndex: 1
+        });
+	})
 </script>
+</body>
 </html>

@@ -23,12 +23,19 @@
 
     $.fn.zoomViewer = function(options){
 
-        var settings = $.extend({}, options);
+        var settings = $.extend({
+            mousewheel: true,
+            ui_disabled: false,
+            src: ''
+        }, options);
 
         return this.each(function(){
 
-            $zoombox = $(this);
-            $image = $(this).find('img');
+            var $zoombox = $(this);
+            var $image = $('<img>').css({position: "absolute", top: "0px", left: "0px"});
+            $image.attr('src', settings.src);
+            $zoombox.html($image);
+
             var ConatainerW = $zoombox.width();
             var ConatainerH = $zoombox.height();
 
@@ -61,13 +68,16 @@
                 img.width(ImageW*percent);
                 img.height(ImageH*percent);
 
-                img.css('left', ImageOffsetX);
-                img.css('top', ImageOffsetY);
+                img.css({
+                    'left': ImageOffsetX,
+                    'top': ImageOffsetY
+                });
             }
 
 
             // Mousewheel Event
             $zoombox.bind('mousewheel', function(event){
+                event.preventDefault();
 
                 if(event.wheelDelta > 0){
                     zoomPercent += 0.1;
@@ -76,7 +86,6 @@
                     if(zoomPercent <= 0.1){
                         return;
                     }
-
 
                     // Todo: 缩小时往中心靠拢
                     if($image.width() - $zoombox.width() <= 100){
@@ -91,10 +100,9 @@
 
 
             // Drag Move Event
-            $zoombox.get(0).onmousedown = function(e){
-                var last = e;
+            $zoombox.bind('mousedown', function(e){
                 e.preventDefault();
-
+                var last = e;
                 function drag(e) {
                     e.preventDefault();
                     ImageOffsetX += (e.pageX - last.pageX);
@@ -109,27 +117,27 @@
                 .one('mouseup', function () {
                     $(document).unbind('mousemove', drag);
                 });
-            };
+
+            });
 
 
             // Rotate Event
             function rotateLeft(argument){
-                // body...
                 angle -= 90;
                 $image.css('-webkit-transform', 'rotate('+angle+'deg)');
             }
             function rotateRight(argument){
-                // body...
                 angle += 90;
                 $image.css('-webkit-transform', 'rotate('+angle+'deg)');
             }
 
-            // $('.js_rotateLeft').click(function(){
-            //     rotateLeft(); 
-            // })
-            // $('.js_rotateRight').click(function(){
-            //     rotateRight(); 
-            // })            
+
+            $('.js_rotateLeft').click(function(){
+                rotateLeft(); 
+            })
+            $('.js_rotateRight').click(function(){
+                rotateRight(); 
+            })            
 
         })
     }
