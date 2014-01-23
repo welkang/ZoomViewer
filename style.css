@@ -1,4 +1,4 @@
-* {
+*{
 	margin: 0;
 	padding: 0;
 }
@@ -7,10 +7,10 @@
     border: 3px solid #000;
     background-color: #ddd;
     overflow: hidden;
-    margin: auto;
     width: 800px; 
     height: 600px; 
     position: relative;
+    float: left;
 }
 
 .zoombox img {
