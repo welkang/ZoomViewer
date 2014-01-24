@@ -1,24 +1,3 @@
-/**
- *
- * zoom-in
- * zoom-out
- * rotate-left
- * rotate-right
- * prev
- * next 
- *
- */
-
-/*
-    ConatainerW
-    ConatainerH
-
-    ImageW
-    ImageH
-    ImageOffsetX
-    ImageOffsetY
-*/
-
 (function($){
 
     $.fn.zoomViewer = function(options){
@@ -81,13 +60,24 @@
             var $image = $('<img>').css({position: "absolute", top: "0px", left: "0px", display:"none" });
             $loading = $('<img class="loading" src="img/spinner.gif">');
 
-            if(settings.srcArray.length > 0){
-                $image.attr('src', settings.srcArray[settings.currentIndex].src);
-            }else if(settings.src !== ''){
-                $image.attr('src', settings.src);
-            }else{
-                return;
-            }
+
+            // if(settings.theme === 'normal'){
+                
+                if(settings.srcArray.length > 0){
+                    $image.attr('src', settings.srcArray[settings.currentIndex].src);
+                }else if(settings.src !== ''){
+                    $image.attr('src', settings.src);
+                }else{
+                    return;
+                }
+
+            // }else if(settings.theme === 'poplayer'){
+
+                
+
+
+            // }
+
 
             $zoombox.html($image);
 
@@ -132,14 +122,6 @@
 
             });
 
-
-            function createLightUi () {
-
-            }
-            
-            function createUI () {
-
-            }
 
 
             function zoomImg (img, percent) {
@@ -283,8 +265,9 @@
                 rotateRight(); 
             }); 
 
-            $('.light-close').click(function(){
-
+            $('.light-close').live('click', function(){
+                console.log(222);
+                $wrapper.remove();
             });
 
             $('.iviewer_next').click(function(){

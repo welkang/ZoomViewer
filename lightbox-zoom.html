@@ -16,16 +16,19 @@
 
 <img src="photos/pic.png" class="js_zoomBoxTrigger" data-src="http://130.dooioo.com/images/2013/1021/6BF4064D9F874C929BAB542356ED889B.jpg_960x960.jpg" width="100">
 
+<img src="photos/pic2.jpg" class="js_zoomBoxTrigger" data-src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg" width="100">
+
 <script type="text/javascript">
 	$(function(){
 
         $('.js_zoomBoxTrigger').click(function(){
-            var zoomViewer = $(this).zoomViewer({'theme':'poplayer'});
+            $this = $(this);
+            var zoomViewer = $(this).zoomViewer({
+                'theme':'poplayer',
+                'src': $this.attr('data-src')
+            });
         });
 
-        $('.light-close').click(function(){
-            $('.zoom-overlay').hide();
-        });
 	})
 </script>
 </body>
