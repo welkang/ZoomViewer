@@ -1,5 +1,5 @@
 body {
-    background: #bfbfbf;
+    
 }
 .iviewer_header {
     height: 44px;
@@ -17,15 +17,16 @@ body {
     line-height: 44px;
     float: left;
 }
-.viewer {
-    width: 100%;
-    position: fixed;
-    top: 44px;
-    bottom: 0;
-    overflow: hidden;
-    z-index: 3;
-    -ms-touch-action: none;
+
+.viewer img {
+    cursor: -webkit-grab;
 }
+
+.lightbox-type .viewer {
+    top: 0;
+}
+
+
 .iviewer_common {
     float: left;
     margin-left: 1px;
@@ -127,4 +128,117 @@ body {
 }
 .iviewer_control .iviewer_button:active {
     box-shadow: inset 0 4px 12px rgba(0,0,0,.3);
+}
+
+
+
+
+
+.light-control {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 36px;
+    height: 66px;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.55);
+    border-radius: 5px;
+}
+
+
+.zoom-in-light {
+    position: absolute;
+    z-index: 30;
+    left: 6px;
+    top: 6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    background-position: -13px -13px;
+}
+
+.zoom-out-light {
+    position: absolute;
+    z-index: 30;
+    left: 6px;
+    bottom: 6px; 
+    background-position: -63px -13px;
+}
+
+.light-close {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    z-index: 30;
+    border-radius: 50%;
+    top: 6px;
+    right: 6px; 
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+    background-position: -313px -13px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 6px solid rgba(0, 0, 0, 0.55);
+    -webkit-background-clip: padding-box; /* for Safari */
+    background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+}
+
+.light-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.light-btn:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+.light-btn:active{
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.zoomboxWrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+}
+.zoombox-normal {
+    background: #bfbfbf;
+}
+
+.zoombox-poplayer {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.zoomboxWrapper .viewer {
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+}
+.zoombox-normal .viewer {
+    top: 44px;
+    bottom: 0;
+}
+
+.zoombox-poplayer .viewer {
+    top: 0;
+    bottom: 0;
+}
+
+.viewer img {
+    cursor: -webkit-grab;
+}
+
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -12px;
+    margin-left: -80px;
+    text-align: center;
+    z-index: 100;
 }
