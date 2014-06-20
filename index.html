@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>jquery.iviewer demo</title>
+    <title>zoom viewer图片组浏览demo</title>
     <link type="text/css" rel="stylesheet" href="http://dui.dooioo.com/public/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript" src="http://dui.dooioo.com/public/js/jquery-1.4.2.min.js"></script>
@@ -15,29 +15,34 @@
 
 		 var imgList = [
             {
-               src: 'http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg',
+               src: 'http://fy.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x9603.jpg',
                title: '图片1'
             },
             {
-               src: 'http://130.dooioo.com/images/2013/1021/6BF4064D9F874C929BAB542356ED889B.jpg_960x960.jpg',
+               src: 'http://fy.dooioo.com/images/2013/1021/6BF4064D9F874C929BAB542356ED889B.jpg_960x960.jpg',
                title: '图片2'
             },
             {
-               src: 'photos/Desert.jpg',
+                src: 'photos/css3-cheat-sheet.pdf',
+                title: 'css3-cheat-sheet'
+            },
+            {
+               src: 'http://fy.dooioo.com/images/2013/0816/20130816114253421FVYOLBXCWOYNION.jpg_0x0.jpg',
                title: '图片3'
             },
             {
-                src: 'photos/pic.png',
-                title: '图片4'
-            },
-            {
-                src: 'photos/pic2.jpg',
+                src: 'http://fy.dooioo.com/images/12/100302181023B4DE8DD9DB7C3ADC58AE/20110831222147377886031525.jpg_600x450.jpg',
                 title: '图片5'
+            },            
+            {
+                src: 'photos/css3-cheat-sheet.pdf',
+                title: 'css3-cheat-sheet'
             }
         ];
 		var zoomViewer = $("body").zoomViewer({
-            srcArray: imgList,
-            currentIndex: 1
+            src: imgList,
+            currentIndex: 0,
+            groupTitle: "图片组标题"
         });
 	})
 </script>

@@ -7,87 +7,73 @@
             theme: 'normal',
             currentIndex: 0,
             src: '',
-            srcArray: []
+            groupTitle: ''
+            // src: []
         }, options);
 
-        var privateMethods = {
-            _create: function(){
-
-            }
-        }
 
         return this.each(function(){
-            $('.zoomboxWrapper').remove();
+            $('.js_zvWrapper').remove();
 
-            if(settings.theme === 'normal'){
-                var $wrapper = $('<div class="zoomboxWrapper zoombox-normal"></div>');
+            // 声明变量
+            var ConatainerW, ConatainerH, ImageW, ImageH, ImageOffsetX, ImageOffsetY, zoomPercent, angle;
+            var $body, $wrapper, $controllUI, $zoombox, $image, $loading, $docDownload, $alert;
 
-                var control_ui = '<header class="iviewer_header">\
-                    <div class="iviewer_header_wrapper clearfix">\
-                        <h1> 图片标题、描述 </h1>\
-                        <div class="iviewer_control">\
-                            <div class="iviewer_prev iviewer_common iviewer_button"></div>\
-                            <div class="iviewer_next iviewer_common iviewer_button"></div>\
-                            <div class="iviewer_zoom_in iviewer_common iviewer_button"></div>\
-                            <div class="iviewer_zoom_out iviewer_common iviewer_button"></div>\
-                            <div class="iviewer_zoom_zero iviewer_common iviewer_button"></div>\
-                            <div class="iviewer_zoom_fit iviewer_common iviewer_button"></div>\
-                            <div class="iviewer_rotate_left iviewer_common iviewer_button"></div>\
-                            <div class="iviewer_rotate_right iviewer_common iviewer_button"></div>\
+            var normalUI = '<header class="zv_header">\
+                    <div class="zv_header_wrapper clearfix">\
+                        <h1>'+ settings.groupTitle +'</h1>\
+                        <div class="zv_control">\
+                            <div class="zv_prev zv_btn js_prev"></div>\
+                            <div class="zv_next zv_btn js_next"></div>\
+                            <div class="zv_zoom_in zv_btn js_zoomIn"></div>\
+                            <div class="zv_zoom_out zv_btn js_zoomOut"></div>\
+                            <div class="zv_zoom_zero zv_btn js_zoomZero"></div>\
+                            <div class="zv_zoom_fit zv_btn js_zoomFit"></div>\
+                            <div class="zv_rotate_left zv_btn js_rotateLeft"></div>\
+                            <div class="zv_rotate_right zv_btn js_rotateRight"></div>\
                         </div>\
                     </div>\
                 </header>';
 
+            var lightUI = '<div class="zvp_control">\
+                            <a href="javascript:;" class="zvp_zoom_in zvp_btn js_zoomIn"></a>\
+                            <a href="javascript:;" class="zvp_zoom_out zvp_btn js_zoomOut"></a>\
+                        </div>\
+                        <a href="javascript:;" class="zvp_close js_lightClose"></a>';
 
+            if(settings.theme === 'normal'){
+                $wrapper = $('<div class="zv_wrapper js_zvWrapper"></div>');
+                $zoombox = $('<div class="zv_viewer"></div>');
+                $controllUI = $(normalUI);
             }else if(settings.theme === 'poplayer'){
-                var $wrapper = $('<div class="zoomboxWrapper zoombox-poplayer"></div>');
-
-                var control_ui = '<div class="light-control">\
-                    <a href="javascript:;" class="zoom-in-light light-btn iviewer_zoom_in"></a>\
-                    <a href="javascript:;" class="zoom-out-light light-btn iviewer_zoom_out"></a>\
-                </div>\
-                <a href="javascript:;" class="light-close"></a>';
+                $wrapper = $('<div class="zvp_wrapper js_zvWrapper"></div>');
+                $zoombox = $('<div class="zvp_viewer"></div>');
+                $controllUI = $(lightUI);
             }
 
-            $('body').append($wrapper);
-            $wrapper.append(control_ui);
-
-
-
-            var $zoombox = $('<div class="viewer"></div>');
+            // Init wrapper style
+            $body = $('body');
+            $body.append($wrapper);
+            $wrapper.append($controllUI);
             $wrapper.append($zoombox);
 
-            var $image = $('<img>').css({position: "absolute", top: "0px", left: "0px", display:"none" });
-            $loading = $('<img class="loading" src="img/spinner.gif">');
+            $image = $('<img>').css({position: "absolute", top: "0px", left: "0px", display:"none", cursor:"-webkit-grab"});
+            $loading = $('<img class="zv_loading" src="http://dui.dooioo.com/public/js/plugs/zoom-viewer/img/spinner.gif">');
 
+            $docDownload = $('<div class="zv_doc">非图片类型文件，请点击下载后查看：<span></span></div>');
+            $alert = $('<div class="zv_alert"></div>');
 
-            // if(settings.theme === 'normal'){
-                
-                if(settings.srcArray.length > 0){
-                    $image.attr('src', settings.srcArray[settings.currentIndex].src);
-                }else if(settings.src !== ''){
-                    $image.attr('src', settings.src);
-                }else{
-                    return;
-                }
-
-            // }else if(settings.theme === 'poplayer'){
-
-                
-
-
-            // }
-
-
-            $zoombox.html($image);
-
-            var ConatainerW, ConatainerH, ImageW, ImageH, ImageOffsetX, ImageOffsetY, zoomPercent, angle;
+            $wrapper.append($docDownload);
+            $wrapper.append($alert);
+            $body.append($loading);
 
             $image.load(function(){
-                $('.loading').hide();
 
                 // 初始化图片
                 $image.css({position: "absolute", top: "0px", left: "0px", width:'', height:'', '-webkit-transform':'rotate(0deg)', 'display': 'block'});
+
+                $loading.hide();
+                $image.show();
 
                 ConatainerW = $zoombox.width();
                 ConatainerH = $zoombox.height();
@@ -120,8 +106,30 @@
                 });
                 zoomPercent = $image.width()/ImageW;
 
+            }).error(function(){
+                $loading.remove();
+                $image.hide();
+
+                $docDownload.show();
+
+                if(settings.theme === 'poplayer'){
+                    $docDownload.html('该图片无大图');
+                }else{
+                    $docDownload.html('该图片无法查看');
+                }
             });
 
+
+            $zoombox.html($image);
+
+            if(typeof settings.src == 'object' && settings.src.length > 0){
+                changeFile(settings.src[settings.currentIndex].src, settings.src[settings.currentIndex].title)
+                // $image.attr({'src':settings.src[settings.currentIndex].src, 'title':settings.src[settings.currentIndex].title});
+            }else if(typeof settings.src == 'string'){
+                changeFile(settings.src, '下载')
+            }else{
+                return;
+            }
 
 
             function zoomImg (img, percent) {
@@ -193,9 +201,7 @@
                     'top': ImageOffsetY
                 });
                 zoomPercent = $image.width()/ImageW;
-
             }
-
 
             // Rotate Event
             function rotateLeft(argument){
@@ -206,6 +212,40 @@
                 angle += 90;
                 $image.css('-webkit-transform', 'rotate('+angle+'deg)');
             }
+
+            // var docTypeExp = /\.(doc|docx|wps|xls|xlsx|et|pdf)$/i;
+            // Change File
+            function changeFile(src, title){
+                $loading.show();
+                //Todo: 空地址情况 (.underfined)
+//                var isFilePath = src.search(/\.underfined$/)
+//                if(isFilePath < 0){
+//                    $image.hide();
+//                    $loading.hide();
+//                    $docDownload.html('文件地址有误，无法预览');
+//                    $docDownload.show();
+//
+//                    return;
+//                }
+
+                var imgTypeExp = /\.(jpg|jpeg|bmp|gif|png)$/i;
+
+                if(imgTypeExp.test(src)){
+                    // 图片类型
+                    $image.hide();
+                    $docDownload.hide();
+
+                    $image.attr({'src': src, 'title': title});
+                    // $image.trigger('load');
+                }else{
+                    // 其他类型
+                    $image.hide();
+                    $loading.hide();
+                    $docDownload.html('非图片类型文件，请点击下载后查看：<a href="'+src+'" download="'+title+'">'+title+'</a>');
+                    $docDownload.show();
+                }
+            }
+
 
             // Mousewheel Event
             $zoombox.bind('mousewheel', function(event){
@@ -242,44 +282,57 @@
             });
 
             // Button Click Control
-            $('.iviewer_zoom_in').click(function(){
+            $wrapper.find('.js_zoomIn').click(function(){
                 zoomIn(0.2);
             });
-
-            $('.iviewer_zoom_out').click(function(){
+            $wrapper.find('.js_zoomOut').click(function(){
                 zoomOut(0.2);
             });
-
-            $('.iviewer_zoom_zero').click(function(){
+            $wrapper.find('.js_zoomZero').click(function(){
                 zoomOriginal();
-            })
-
-            $('.iviewer_zoom_fit').click(function(){
+            });
+            $wrapper.find('.js_zoomFit').click(function(){
                 zoomFit();
-            })
-
-            $('.iviewer_rotate_left').click(function(){
+            });
+            $wrapper.find('.js_rotateLeft').click(function(){
                 rotateLeft(); 
             });
-            $('.iviewer_rotate_right').click(function(){
+            $wrapper.find('.js_rotateRight').click(function(){
                 rotateRight(); 
             }); 
-
-            $('.light-close').live('click', function(){
-                console.log(222);
-                $wrapper.remove();
-            });
-
-            $('.iviewer_next').click(function(){
-                if(settings.currentIndex >= settings.srcArray.length) {return}
+            $wrapper.find('.js_next').click(function(){
+                if(settings.currentIndex >= (settings.src.length - 1)) {
+                    $alert.html('已到最后一张').stop(true, true).slideDown('fast').delay(1000).slideUp('normal');
+                    return
+                }
                 settings.currentIndex++;
-                $image.attr('src', settings.srcArray[settings.currentIndex].src);
+                changeFile(settings.src[settings.currentIndex].src, settings.src[settings.currentIndex].title)
+                // $image.attr({'src': settings.src[settings.currentIndex].src, 'title': settings.src[settings.currentIndex].title});
             });
-            $('.iviewer_prev').click(function(){
-                if(settings.currentIndex <= 0) {return}
+            $wrapper.find('.js_prev').click(function(){
+                if(settings.currentIndex <= 0) {
+                    $alert.html('已到第一张').stop(true, true).slideDown('fast').delay(1000).slideUp('normal');
+                    return
+                }
                 settings.currentIndex--;
-                $image.attr('src', settings.srcArray[settings.currentIndex].src);
-            });            
+                changeFile(settings.src[settings.currentIndex].src, settings.src[settings.currentIndex].title)
+                // $image.attr({'src': settings.src[settings.currentIndex].src, 'title': settings.src[settings.currentIndex].title});
+            }); 
+            $wrapper.find('.js_lightClose').click(function(){
+                $wrapper.remove();
+                $loading.remove();
+        });
+
+
+            // 左、右按键切换图片
+            if(settings.theme === 'normal'){
+                $(document).keyup(function(e) {
+                    switch(e.keyCode) { 
+                        case 37 : $wrapper.find('.js_prev').click(); break;
+                        case 39 : $wrapper.find('.js_next').click(); break;
+                    }
+                });
+            }
         })
     }
 
