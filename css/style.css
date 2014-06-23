@@ -13,6 +13,7 @@
 .zv_viewer {
     width: 100%; 
     top: 44px;
+    right: 370px;
     bottom: 0;
     position: fixed;
     overflow: hidden;
