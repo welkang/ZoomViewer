@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Zoom Viewer Demo</title>
+    <link type="text/css" rel="stylesheet" href="http://dui.dooioo.com/public/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/gallery.css">
+    <script type="text/javascript" src="http://dui.dooioo.com/public/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/zoom-viewer.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    $(function () {
+
+        var imgList = [
+            {
+                src: 'http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg',
+                title: '图片1'
+            },
+            {
+                src: 'http://130.dooioo.com/images/2013/1021/6BF4064D9F874C929BAB542356ED889B.jpg_960x960.jpg',
+                title: '图片2'
+            },
+            {
+                src: 'http://fs.dooioo.com/fetch/vp/jpgy/img/20140617/5d784d73-b162-4bd3-b5b5-2bab355a4e87.jpg',
+                title: '图片3'
+            },
+            {
+                src: 'http://fs.dooioo.com/fetch/vp/jpgy/img/20140617/cf40712b-364e-40f7-8861-5563a422f3c7.jpg',
+                title: '图片4'
+            },
+            {
+                src: 'http://fs.dooioo.com/fetch/vp/jpgy/img/20140617/52c206fd-a45d-4b69-9a6a-0d32465273a1.jpg',
+                title: '图片5'
+            }
+        ];
+//        var zoomViewer = $("body").zoomViewer({
+//            src: imgList,
+//            currentIndex: 0,
+//            groupTitle: "附件预览"
+//        });
+    })
+</script>
+
+
+<div class="zv_wrapper js_zvWrapper">
+    <header class="zv_header">
+        <div class="zv_header_wrapper clearfix"><h1>附件预览</h1>
+
+            <div class="zv_control">
+                <div class="zv_prev zv_btn js_prev"></div>
+                <div class="zv_next zv_btn js_next"></div>
+                <div class="zv_zoom_in zv_btn js_zoomIn"></div>
+                <div class="zv_zoom_out zv_btn js_zoomOut"></div>
+                <div class="zv_zoom_zero zv_btn js_zoomZero"></div>
+                <div class="zv_zoom_fit zv_btn js_zoomFit"></div>
+                <div class="zv_rotate_left zv_btn js_rotateLeft"></div>
+                <div class="zv_rotate_right zv_btn js_rotateRight"></div>
+            </div>
+        </div>
+    </header>
+    <div class="zv_viewer">
+        <img src="photos/Desert.jpg" title="图片1">
+        <img src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg" title="图片1">
+        <img src="photos/pic.png" title="图片1">
+        <img src="photos/pic2.jpg" title="图片1">
+        <img src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg" title="图片1">
+    </div>
+    <div class="thumbnail">
+        <div>
+
+            <a href="javascript:;" index="0"> <img
+                    src="photos/Desert.jpg" alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" index="1"> <img
+                    src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg"
+                    alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" index="2"> <img
+                    src="photos/pic.png" alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" index="3"> <img
+                    src="photos/pic2.jpg" alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" index="4"> <img
+                    src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg"
+                    alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" index="5"> <img
+                    src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg"
+                    alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" index="4"> <img
+                    src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg"
+                    alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" index="5"> <img
+                    src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg"
+                    alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" index="6"> <img
+                    src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg"
+                    alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" index="7"> <img
+                    src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg"
+                    alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" index="8"> <img
+                    src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg"
+                    alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" index="9"> <img
+                    src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg"
+                    alt=""/>
+            </a>
+        </div>
+    </div>
+    <div class="zv_doc" style="display: none;">非图片类型文件，请点击下载后查看：<span></span></div>
+    <div class="zv_alert"></div>
+</div>
+<img class="zv_loading" src="http://dui.dooioo.com/public/js/plugs/zoom-viewer/img/spinner.gif" style="display: none;">
+<script type="text/javascript">
+    $(function () {
+        $('.zv_viewer img').zoomViewer();
+
+        var $currentImage;
+
+
+        $wrapper = $('.js_zvWrapper');
+        // Button Click Control
+        $wrapper.find('.js_zoomIn').click(function () {
+            zoomIn($currentImage, 0.2);
+        });
+        $wrapper.find('.js_zoomOut').click(function () {
+            zoomOut($currentImage, 0.2);
+        });
+        $wrapper.find('.js_zoomZero').click(function () {
+            zoomOriginal($currentImage);
+        });
+        $wrapper.find('.js_zoomFit').click(function () {
+            zoomFit($currentImage);
+        });
+        $wrapper.find('.js_rotateLeft').click(function () {
+            rotateLeft($currentImage);
+        });
+        $wrapper.find('.js_rotateRight').click(function () {
+            rotateRight($currentImage);
+        });
+        $wrapper.find('.js_next').click(function () {
+            if (settings.currentIndex >= (settings.src.length - 1)) {
+                $alert.html('已到最后一张').stop(true, true).slideDown('fast').delay(1000).slideUp('normal');
+                return
+            }
+            settings.currentIndex++;
+//                changeFile(settings.src[settings.currentIndex].src, settings.src[settings.currentIndex].title)
+            // $image.attr({'src': settings.src[settings.currentIndex].src, 'title': settings.src[settings.currentIndex].title});
+        });
+        $wrapper.find('.js_prev').click(function () {
+            if (settings.currentIndex <= 0) {
+                $alert.html('已到第一张').stop(true, true).slideDown('fast').delay(1000).slideUp('normal');
+                return
+            }
+            settings.currentIndex--;
+//                changeFile(settings.src[settings.currentIndex].src, settings.src[settings.currentIndex].title)
+            // $image.attr({'src': settings.src[settings.currentIndex].src, 'title': settings.src[settings.currentIndex].title});
+        });
+
+        // 左、右按键切换图片
+        $(document).keyup(function (e) {
+            switch (e.keyCode) {
+                case 37 :
+                    $wrapper.find('.js_prev').click();
+                    break;
+                case 39 :
+                    $wrapper.find('.js_next').click();
+                    break;
+            }
+        });
+
+        $('.thumbnail a').bind('click', function () {
+            var index = $(this).attr('index');
+            var previewImages = $('.zv_viewer img');
+            previewImages.hide();
+            previewImages.eq(index).show();
+            $currentImage = previewImages.eq(index);
+        });
+
+        $('.thumbnail a').eq(0).click();
+    })
+</script>
+</body>
+</html>
