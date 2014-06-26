@@ -17,10 +17,13 @@
             $image = $(this);
             $alert = $('.zv_alert');
 
+            $image.hide();
+
             function loaded() {
+//                $image.show();
 
                 // Init
-                ConatainerW = $zoombox.width() + 370;
+                ConatainerW = $zoombox.width();
                 ConatainerH = $zoombox.height();
 
 
@@ -171,10 +174,10 @@
             
             $image.load(function () {
                 loaded();
-            })
+            });
+            $image.one('load', loaded);
 //            if ($image.get(0).complete) {
 //            } else {
-//                $image.one('load', loaded);
 //            }
         })
     }

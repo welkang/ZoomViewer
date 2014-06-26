@@ -1,20 +1,32 @@
+.zv_viewer > div {
+    display: none;
+}
 .zv_viewer img {
     position: absolute;
-    display: none;
     cursor: -webkit-grab;
     top: 0;
     left: 0;
     -webkit-transform: rotate(0deg);
 }
 
+
+
 .thumbnail {
     width: 330px;
-    position: absolute;
-    right: 10px;
     top: 54px;
-    background: #fff;
+    right: 10px;
+    bottom: 10px;
+    position: fixed;
     padding: 10px 10px 0 10px;
     overflow-y: scroll;
+    background: #fff;
+    /*width: 330px;*/
+    /*position: absolute;*/
+    /*right: 10px;*/
+    /*top: 54px;*/
+    /*background: #fff;*/
+    /*padding: 10px 10px 0 10px;*/
+    /*overflow-y: scroll;*/
 }
 .thumbnail a {
     margin: 0 0 10px 0;

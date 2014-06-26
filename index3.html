@@ -10,8 +10,8 @@
     <script type="text/javascript" src="js/zoom-viewer.js"></script>
 </head>
 <body>
-<!--<img class="zv_loading" src="http://dui.dooioo.com/public/js/plugs/zoom-viewer/img/spinner.gif">-->
 <div class="zv_alert"></div>
+<img class="zv_loading" src="http://dui.dooioo.com/public/js/plugs/zoom-viewer/img/spinner.gif">
 <div class="zv_wrapper js_zvWrapper">
     <header class="zv_header">
         <div class="zv_header_wrapper clearfix"><h1>附件预览</h1>
@@ -29,9 +29,10 @@
         </div>
     </header>
     <div class="zv_viewer">
-        <img src="http://fs.dooioo.com/fetch/vp/jpgy/img/20140617/cf40712b-364e-40f7-8861-5563a422f3c7.jpg" alt=""/>
-        <img src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg" alt=""/>
-        <img src="http://fs.dooioo.com/fetch/vp/jpgy/img/20140617/5d784d73-b162-4bd3-b5b5-2bab355a4e87.jpg" alt=""/>
+            <img class="zv_item" src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg" alt=""/>
+            <img class="zv_item" src="http://fs.dooioo.com/fetch/vp/jpgy/img/20140617/cf40712b-364e-40f7-8861-5563a422f3c7.jpg" alt=""/>
+            <img class="zv_item" src="http://fs.dooioo.com/fetch/vp/jpgy/img/20140617/5d784d73-b162-4bd3-b5b5-2bab355a4e87.jpg" alt=""/>
+            <div class="zv_doc zv_item">非图片类型文件，请点击下载后查看：<span><a href="">文件名</a></span></div>
         <!--<img src="http://fs.dooioo.com/fetch/vp/jpgy/img/20140617/52c206fd-a45d-4b69-9a6a-0d32465273a1.jpg" alt=""/>-->
         <!--<img src="http://fs.dooioo.com/fetch/vp/jpgy/img/20140617/cc4918a1-4ec5-4b26-b0b9-f94bd5fc84bc.jpg" alt=""/>-->
         <!--<img src="http://fs.dooioo.com/fetch/vp/jpgy/img/20140617/7af69e42-0799-449b-ae3f-89a0bf507f16.jpg" alt=""/>-->
@@ -44,7 +45,50 @@
             <div> <img src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg" alt=""/> </div>
         </a>
         <a href="javascript:;" index="2">
-            <div> <img src="photos/pic.png" alt=""/> </div>
+            <div> <img src="img/icon_excel.png" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="3">
+            <div> <img src="img/icon_pdf.png" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="4">
+            <div> <img src="img/icon_text.png" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="5">
+            <div> <img src="img/icon_word.png" alt=""/> </div>
+        </a>
+
+        <a href="javascript:;" index="0">
+            <div> <img src="photos/Desert.jpg" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="1">
+            <div> <img src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="2">
+            <div> <img src="img/icon_excel.png" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="3">
+            <div> <img src="img/icon_pdf.png" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="4">
+            <div> <img src="img/icon_text.png" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="5">
+            <div> <img src="img/icon_word.png" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="1">
+            <div> <img src="http://130.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="2">
+            <div> <img src="img/icon_excel.png" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="3">
+            <div> <img src="img/icon_pdf.png" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="4">
+            <div> <img src="img/icon_text.png" alt=""/> </div>
+        </a>
+        <a href="javascript:;" index="5">
+            <div> <img src="img/icon_word.png" alt=""/> </div>
         </a>
     </div>
     <div class="zv_doc" style="display: none;">非图片类型文件，请点击下载后查看：<span></span></div>
@@ -56,6 +100,8 @@
         $('.zv_viewer img').zoomViewer();
 
         $alert = $('.zv_alert');
+
+//        var showingImage = $('.thumbnail .opacity50').attr('index');
 
         $wrapper = $('.js_zvWrapper');
         // Button Click Control
@@ -83,13 +129,13 @@
             $('.thumbnail a').removeClass('opacity50');
             $(this).addClass('opacity50');
             currentIndex = $(this).attr('index');
-            var previewImages = $('.zv_viewer img');
-            previewImages.hide();
-            previewImages.eq(currentIndex).show();
+            var previewWrap = $('.zv_viewer .zv_item');
+            previewWrap.hide();
+            previewWrap.eq(currentIndex).show();
         });
         $('.thumbnail a').eq(0).click();
         // 缩略图高度自适应
-        $('.thumbnail').height($(window).height() -74);
+//        $('.thumbnail').height($(window).height() -74);
 
         $wrapper.find('.js_next').click(function () {
             var $currentImg = $('.thumbnail a.opacity50');

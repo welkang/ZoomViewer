@@ -11,10 +11,13 @@
     background: #bfbfbf;
 }
 .zv_viewer {
-    width: 100%; 
-    top: 44px;
+    /*width: 100%; */
+    top: 54px;
+    left: 10px;
+    /*outline: 1px dashed #f2f2f2;*/
+    background: #fefefe;
     right: 370px;
-    bottom: 0;
+    bottom: 10px;
     position: fixed;
     overflow: hidden;
 }
@@ -35,7 +38,7 @@
     font-size: 16px;
     text-align: center;
     z-index: 1001;
-    display: none;
+    /*display: none;*/
 }
 
 .zv_alert {
