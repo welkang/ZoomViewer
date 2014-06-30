@@ -17,18 +17,19 @@
             $image = $(this);
             $alert = $('.zv_alert');
 
-            $image.hide();
-
             function loaded() {
-//                $image.show();
 
+                $image.closest('div').removeClass('loading-bg');
+                $image.show();
                 // Init
                 ConatainerW = $zoombox.width();
                 ConatainerH = $zoombox.height();
 
 
-                ImageOrginW = $image.width();
-                ImageOriginH = $image.height();
+                ImageOrginW = $image.get(0).width;
+                ImageOriginH = $image.get(0).height;
+                console.log($image);
+                console.log(ImageOrginW);
 
                 ImageOffsetX = 0;
                 ImageOffsetY = 0;
@@ -39,6 +40,15 @@
                  * 对外公开事件接口
                  * 通过$image.trigger('eventName')触发
                  */
+                $image.unbind({
+                    'zoom-in': zoomIn,
+                    'zoom-out': zoomOut,
+                    'zoom-fit': zoomFit,
+                    'zoom-original': zoomOriginal,
+                    'rotate-left': rotateLeft,
+                    'rotate-right': rotateRight
+                });
+
                 $image.bind({
                     'zoom-in': zoomIn,
                     'zoom-out': zoomOut,
@@ -50,6 +60,10 @@
 
                 // 缩放图片
                 function zoomImg(percent) {
+                    // 设置最小缩放到
+                    if(ImageOrginW * percent <= 100 || ImageOriginH * percent <= 100){
+                        return;
+                    }
 
                     ImageOffsetX -= (ImageOrginW * percent - $image.width()) / 2;
                     ImageOffsetY -= (ImageOriginH * percent - $image.height()) / 2;
@@ -138,15 +152,17 @@
                 zoomFit($image);
 
                 // Mousewheel Event
-                $image.bind('mousewheel', function (event) {
-                    event.preventDefault();
+                /*
+                 $image.bind('mousewheel', function (event) {
+                 event.preventDefault();
 
-                    if (event.wheelDelta > 0) {
-                        zoomOut($(this), 0.1);
-                    } else {
-                        zoomIn($(this), 0.1);
-                    }
-                });
+                 if (event.wheelDelta > 0) {
+                 zoomOut($(this), 0.1);
+                 } else {
+                 zoomIn($(this), 0.1);
+                 }
+                 });
+                 */
 
                 // Drag Move Event
                 $image.bind('mousedown', function (e) {
@@ -171,11 +187,17 @@
                         });
                 });
             }
-            
+
             $image.load(function () {
                 loaded();
             });
-            $image.one('load', loaded);
+//            $image.one('load', loaded);
+
+//            $(window).resize(function() {
+//                loaded();
+//            });
+
+
 //            if ($image.get(0).complete) {
 //            } else {
 //            }

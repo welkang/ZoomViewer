@@ -11,11 +11,9 @@
     background: #bfbfbf;
 }
 .zv_viewer {
-    /*width: 100%; */
     top: 54px;
     left: 10px;
-    /*outline: 1px dashed #f2f2f2;*/
-    background: #fefefe;
+    background: #F3EEEE;
     right: 370px;
     bottom: 10px;
     position: fixed;
@@ -33,12 +31,11 @@
 .zv_doc {
     position: fixed;
     top: 50%;
-    width: 100%;
-    text-align: center;
+    right: 370px;
+    left: 10px;
     font-size: 16px;
     text-align: center;
     z-index: 1001;
-    /*display: none;*/
 }
 
 .zv_alert {
@@ -81,8 +78,12 @@
 }
 
 .zv_control {
-    float: right;
-    margin: 10px;
+    /*float: right;*/
+    /*margin: 10px;*/
+    position: absolute;
+    z-index: 1;
+    top: 64px;
+    right: 375px;
 }   
 .zv_btn {
     cursor: pointer;
@@ -268,4 +269,103 @@
 }
 .zvp_close:active{
     background-color: rgba(255, 255, 255, 0.4);
+}
+
+
+
+/* Gallery Styles */
+
+.zv_viewer .zv_img {
+    display: none;
+    top: 54px;
+    left: 10px;
+    right: 370px;
+    bottom: 10px;
+    position: fixed;
+    overflow: hidden;
+}
+.zv_viewer img {
+    position: absolute;
+    cursor: -webkit-grab;
+    top: 0;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    display: none;
+}
+.loading-bg {
+    background: url("http://dui.dooioo.com/public/images/loading-small.gif") no-repeat center center;
+}
+
+
+
+.thumbnail {
+    width: 335px;
+    top: 54px;
+    right: 5px;
+    bottom: 10px;
+    position: fixed;
+    padding: 10px 10px 0 10px;
+    overflow-y: scroll;
+    background: #fff;
+    /*width: 330px;*/
+    /*position: absolute;*/
+    /*right: 10px;*/
+    /*top: 54px;*/
+    /*background: #fff;*/
+    /*padding: 10px 10px 0 10px;*/
+    /*overflow-y: scroll;*/
+}
+.thumbnail a {
+    margin: 0 0 10px 0;
+    float: left;
+    width: 160px;
+    height: 102px;
+    background: #ddd;
+}
+.thumbnail div {
+    width: 160px;
+    height: 102px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    background: url("http://dui.dooioo.com/public/images/loading-small.gif") no-repeat center center;
+}
+.thumbnail > a:nth-child(2n) {
+    margin-left: 10px;
+}
+
+.thumbnail a img {
+    margin: 0;
+    padding: 0;
+    max-width: 160px;
+    max-height: 102px;
+}
+
+.thumbnail a:hover {
+    opacity: 0.5;
+}
+
+
+
+
+.webkitscrollbar::-webkit-scrollbar {
+    height: 8px;
+    margin: -4px 0 0;
+    width: 5px;
+    background: #bfbfbf;
+    /*border: 1px solid #6e7985;*/
+    /*-webkit-border-radius: 1ex;*/
+}
+
+.webkitscrollbar::-webkit-scrollbar-thumb {
+    background: #808994;
+    /*-webkit-border-radius: 1ex;*/
+
+}
+.webkitscrollbar::-webkit-scrollbar-thumb:hover{
+    background: #aab1b8;
+}
+
+.webkitscrollbar::-webkit-scrollbar-corner {
+    background: #000;
 }
