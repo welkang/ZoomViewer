@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>jquery.iviewer demo</title>
+    <link type="text/css" rel="stylesheet" href="http://dui.dooioo.com/public/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="http://dui.dooioo.com/public/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="./js/zoom-viewer.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+	$(function(){
+
+		 var imgList = [
+            {
+               src: 'http://fy.dooioo.com/images/2013/1018/D20009EF8A804D649A5998F0437DBF81.jpg_960x960.jpg',
+               title: '图片1'
+            },
+            {
+               src: 'http://fy.dooioo.com/images/2013/1021/6BF4064D9F874C929BAB542356ED889B.jpg_960x960.jpg',
+               title: '图片2'
+            },
+            {
+               src: 'photos/Desert.jpg',
+               title: '图片3'
+            },
+            {
+                src: 'photos/pic.png',
+                title: '图片4'
+            },
+            {
+                src: 'photos/pic2.jpg',
+                title: '图片5'
+            }
+        ];
+		var zoomViewer = $("body").zoomViewer({
+            src: imgList,
+            currentIndex: 1,
+            groupTitle: "图片组标题"
+        });
+	})
+</script>
+</body>
+</html>
