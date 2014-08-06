@@ -19,6 +19,7 @@
                     <div class="zv_header_wrapper clearfix">\
                         <h1>'+ settings.groupTitle +'</h1>\
                         <div class="zv_control">\
+                            <div class="zv_pageNo"><span></span>/<span></span></div>\
                             <div class="zv_prev zv_btn js_prev"></div>\
                             <div class="zv_next zv_btn js_next"></div>\
                             <div class="zv_zoom_in zv_btn js_zoomIn"></div>\
@@ -41,6 +42,9 @@
                 var $wrapper = $('<div class="zv_wrapper js_zvWrapper"></div>');
                 var $zoombox = $('<div class="zv_viewer"></div>');
                 var control_ui = normalUI;
+                var $alert = $('<div class="zv_alert"></div>');
+                $wrapper.append($alert);
+
             }else if(settings.theme === 'poplayer'){
                 var $wrapper = $('<div class="zvp_wrapper js_zvWrapper"></div>');
                 var $zoombox = $('<div class="zvp_viewer"></div>');
@@ -51,8 +55,16 @@
             $wrapper.append(control_ui);
             $wrapper.append($zoombox);
 
+            // 设置页码
+            if(settings.theme === 'normal'){
+                $('.zv_pageNo span').eq(1).text(settings.src.length);
+                $('.zv_pageNo span').eq(0).text(settings.currentIndex + 1);
+            }
+
+
             var $image = $('<img>').css({position: "absolute", top: "0px", left: "0px", display:"none", cursor:"-webkit-grab"});
-            $loading = $('<img class="zv_loading" src="http://dui.dooioo.com/public/js/plugs/zoom-viewer/img/spinner.gif">');
+            var $loading = $('<img class="zv_loading" src="http://dui.dooioo.com/public/js/plugs/zoom-viewer/img/spinner.gif">');
+
 
             $('body').append($loading);
 
@@ -69,7 +81,7 @@
             var ConatainerW, ConatainerH, ImageW, ImageH, ImageOffsetX, ImageOffsetY, zoomPercent, angle;
 
             $image.load(function(){
-                $('.zv_loading').hide();
+                $loading.hide();
 
                 // 初始化图片
                 $image.css({position: "absolute", top: "0px", left: "0px", width:'', height:'', '-webkit-transform':'rotate(0deg)', 'display': 'block'});
@@ -199,9 +211,9 @@
                 event.preventDefault();
 
                 if(event.wheelDelta > 0){
-                    zoomOut(0.1);
-                }else{
                     zoomIn(0.1);
+                }else{
+                    zoomOut(0.1);
                 }
             });
 
@@ -248,15 +260,29 @@
                 rotateRight(); 
             }); 
             $wrapper.find('.js_next').click(function(){
-                if(settings.currentIndex >= (settings.src.length - 1)) {return}
+                if(settings.currentIndex >= (settings.src.length - 1)) {
+                    $alert.html('已到最后一张').stop(true, true).slideDown('fast').delay(1000).slideUp('normal');
+                    return;
+                }
                 settings.currentIndex++;
+                $loading.show();
+                $alert.hide();
+
                 $image.attr({'src': settings.src[settings.currentIndex].src, 'title': settings.src[settings.currentIndex].title});
+                $('.zv_pageNo span').eq(0).text(settings.currentIndex + 1);
             });
             $wrapper.find('.js_prev').click(function(){
-                if(settings.currentIndex <= 0) {return}
+                if(settings.currentIndex <= 0) {
+                    $alert.html('已到第一张').stop(true, true).slideDown('fast').delay(1000).slideUp('normal');
+                    return;
+                }
                 settings.currentIndex--;
+                $alert.hide();
+                $loading.show();
+
                 $image.attr({'src': settings.src[settings.currentIndex].src, 'title': settings.src[settings.currentIndex].title});
-            }); 
+                $('.zv_pageNo span').eq(0).text(settings.currentIndex + 1);
+            });
             $wrapper.find('.js_lightClose').click(function(){
                 $wrapper.remove();
                 $loading.remove();

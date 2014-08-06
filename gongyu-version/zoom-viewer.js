@@ -200,6 +200,7 @@
                         console.log($image.css('top'));
                         console.log($image.css('bottom'));
                         console.log(ImageOffsetX+'----'+ImageOffsetY);
+
                         $image.css({'left': parseInt(ImageOffsetX), 'top': parseInt(ImageOffsetY)});
                     }
 
