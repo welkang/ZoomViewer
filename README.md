@@ -1,6 +1,4 @@
-Image Viewer
+ZoomViewer
 ===========
-### 功能说明
 
-- 一组图片浏览
-- 
+![](preview.png)
