@@ -328,7 +328,7 @@
     display: table-cell;
     vertical-align: middle;
     text-align: center;
-    background: url("http://dui.dooioo.com/public/images/loading-small.gif") no-repeat center center;
+    background: url("../img/loading.gif") no-repeat center center;
 }
 .thumbnail > a:nth-child(2n) {
     margin-left: 10px;
