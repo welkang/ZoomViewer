@@ -1,83 +1,167 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Zoom Viewer Demo</title>
+    <!-- <link type="text/css" rel="stylesheet" href="http://dui.dooioo.com/public/css/main.css" /> -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/zoom-viewer.js"></script>
+</head>
 
-    <title>Zoom-viewer by welkang</title>
-  </head>
-
-  <body>
-    <header>
-      <div class="inner">
-        <h1>Zoom-viewer</h1>
-        <h2>Image Viewer</h2>
-        <a href="https://github.com/welkang/zoom-viewer" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
-
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/welkang/zoom-viewer/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/welkang/zoom-viewer/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/welkang/zoom-viewer"></a> is maintained by <a href="https://github.com/welkang">welkang</a>.</p>
-
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
+<body>
+    <div class="zv_alert"></div>
+    <div class="zv_wrapper js_zvWrapper">
+        <header class="zv_header">
+            <div class="zv_header_wrapper clearfix">
+                <h1>附件预览</h1>
+            </div>
+        </header>
+        <div class="zv_control">
+            <div class="zv_zoom_in zv_btn js_zoomIn" title="也可使用滚轮缩放哦～"></div>
+            <div class="zv_zoom_out zv_btn js_zoomOut" title="也可使用滚轮缩放哦～"></div>
+            <div class="zv_zoom_zero zv_btn js_zoomZero"></div>
+            <div class="zv_zoom_fit zv_btn js_zoomFit"></div>
+            <div class="zv_rotate_left zv_btn js_rotateLeft"></div>
+            <div class="zv_rotate_right zv_btn js_rotateRight"></div>
+            <div class="zv_prev zv_btn js_prev"></div>
+            <div class="zv_next zv_btn js_next"></div>
+        </div>
+        <div class="zv_viewer">
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/armor-up-baymax.png" alt="" />
+            </div>
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/Baymax-big-hero-6-37210587-612-792.png" alt="" />
+            </div>
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/Baymax-Wallpaper-HD1.jpg" alt="" />
+            </div>
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/il_fullxfull.667456823_c6bs.jpg" alt="" />
+            </div>
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/image.jpg" alt="" />
+            </div>
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/Impressionist-style-iPhone-wallpaper-2.jpg" alt="" />
+            </div>
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/tumblr_neuiq8D0LB1tp9z29o1_1415660624_cover.jpg" alt="" />
+            </div>
+            <div class="zv_doc zv_item">非图片类型文件，请点击下载后查看：<span><a href="">文件名</a></span>
+            </div>
+        </div>
+        <div class="thumbnail">
+            <a href="javascript:;" index="0">
+                <div> <img src="http://static_2015.jd-app.com/wallpaper/armor-up-baymax.png" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="1">
+                <div> <img src="http://static_2015.jd-app.com/wallpaper/Baymax-big-hero-6-37210587-612-792.png" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="2">
+                <div> <img src="http://static_2015.jd-app.com/wallpaper/Baymax-Wallpaper-HD1.jpg" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="3">
+                <div> <img src="http://static_2015.jd-app.com/wallpaper/il_fullxfull.667456823_c6bs.jpg" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="4">
+                <div> <img src="http://static_2015.jd-app.com/wallpaper/image.jpg" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="5">
+                <div> <img src="http://static_2015.jd-app.com/wallpaper/Impressionist-style-iPhone-wallpaper-2.jpg" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="6">
+                <div> <img src="http://static_2015.jd-app.com/wallpaper/tumblr_neuiq8D0LB1tp9z29o1_1415660624_cover.jpg" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="7">
+                <div> <img src="img/icon_pdf.png" alt="" /> </div>
+            </a>
+        </div>
+        <!-- <div class="zv_doc" style="display: none;">非图片类型文件，请点击下载后查看：<span></span> -->
+        </div>
+        <!--<div class="zv_alert"></div>-->
     </div>
+    <img class="zv_loading" src="img/spinner.gif" style="display: none;">
+    <script type="text/javascript">
+    $(function() {
+        $('.zv_viewer img').zoomViewer();
 
-  
-  </body>
+        $alert = $('.zv_alert');
+
+        $wrapper = $('.js_zvWrapper');
+        // Button Click Control
+        $wrapper.find('.js_zoomIn').click(function() {
+            $('.zv_viewer img:visible').trigger('zoom-in');
+        });
+        $wrapper.find('.js_zoomOut').click(function() {
+            $('.zv_viewer img:visible').trigger('zoom-out');
+        });
+        $wrapper.find('.js_zoomZero').click(function() {
+            $('.zv_viewer img:visible').trigger('zoom-original');
+        });
+        $wrapper.find('.js_zoomFit').click(function() {
+            $('.zv_viewer img:visible').trigger('zoom-fit');
+        });
+        $wrapper.find('.js_rotateLeft').click(function() {
+            console.log('times');
+            $('.zv_viewer img:visible').trigger('rotate-left');
+        });
+        $wrapper.find('.js_rotateRight').click(function() {
+            $('.zv_viewer img:visible').trigger('rotate-left');
+        });
+
+        $('.thumbnail a').bind('click', function() {
+            $('.thumbnail a').removeClass('opacity50');
+            $(this).addClass('opacity50');
+            currentIndex = $(this).attr('index');
+            var previewWrap = $('.zv_viewer div');
+            previewWrap.hide();
+            previewWrap.eq(currentIndex).show();
+        });
+        $('.thumbnail a').eq(0).click();
+
+        $wrapper.find('.js_next').click(function() {
+            var $currentImg = $('.thumbnail a.opacity50');
+            if ($currentImg.attr('index') == $('.thumbnail a').length - 1) {
+                $alert.html('已到最后一张').stop(true, true).slideDown('fast').delay(1000).slideUp('normal');
+                return
+            }
+            $currentImg.next('a').click();
+        });
+        $wrapper.find('.js_prev').click(function() {
+            var $currentImg = $('.thumbnail a.opacity50');
+            if ($currentImg.attr('index') == 0) {
+                $alert.html('已到第一张').stop(true, true).slideDown('fast').delay(1000).slideUp('normal');
+                return
+            }
+            $currentImg.prev('a').click();
+        });
+
+        // 左、右按键切换图片
+        $(document).keyup(function(e) {
+            switch (e.keyCode) {
+                case 37:
+                    $wrapper.find('.js_prev').click();
+                    break;
+                case 39:
+                    $wrapper.find('.js_next').click();
+                    break;
+            }
+        });
+
+        // Mousewheel Event
+        $('.zv_viewer').bind('mousewheel', function(event) {
+            event.preventDefault();
+            if (event.wheelDelta > 0) {
+                $('.zv_viewer img:visible').trigger('zoom-out');
+            } else {
+                $('.zv_viewer img:visible').trigger('zoom-in');
+            }
+        });
+    })
+    </script>
+</body>
+
 </html>
