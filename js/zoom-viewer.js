@@ -2,7 +2,6 @@
 
     $.fn.zoomViewer = function (options) {
 
-
         return this.each(function () {
 
             /**
@@ -191,16 +190,6 @@
             $image.load(function () {
                 loaded();
             });
-//            $image.one('load', loaded);
-
-//            $(window).resize(function() {
-//                loaded();
-//            });
-
-
-//            if ($image.get(0).complete) {
-//            } else {
-//            }
         })
     }
 
