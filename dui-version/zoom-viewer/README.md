@@ -1,4 +1,0 @@
-zoom-viewer
-===========
-
-Image Viewer
