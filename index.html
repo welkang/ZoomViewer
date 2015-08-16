@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Zoom Viewer Demo</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="zv_alert"></div>
+    <div class="zv_wrapper js_zvWrapper">
+        <header class="zv_header">
+            <div class="zv_header_wrapper clearfix">
+                <h1>附件预览</h1>
+            </div>
+        </header>
+        <div class="zv_control">
+            <div class="zv_zoom_in zv_btn js_zoomIn" title="也可使用滚轮缩放哦～"></div>
+            <div class="zv_zoom_out zv_btn js_zoomOut" title="也可使用滚轮缩放哦～"></div>
+            <div class="zv_zoom_zero zv_btn js_zoomZero"></div>
+            <div class="zv_zoom_fit zv_btn js_zoomFit"></div>
+            <div class="zv_rotate_left zv_btn js_rotateLeft"></div>
+            <div class="zv_rotate_right zv_btn js_rotateRight"></div>
+            <div class="zv_prev zv_btn js_prev"></div>
+            <div class="zv_next zv_btn js_next"></div>
+        </div>
+        <div class="zv_viewer">
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="./photos/baymax01.jpg" alt="" />
+            </div>
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="./photos/baymax02.jpg" alt="" />
+            </div>
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="./photos/baymax03.jpg" alt="" />
+            </div>
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="./photos/baymax04.jpg" alt="" />
+            </div>
+            <div class="zv_img loading-bg">
+                <img class="zv_item" src="./photos/baymax05.jpg" alt="" />
+            </div>
+            <div class="zv_doc zv_item">非图片类型文件，请点击下载后查看：<span><a href="">文件名</a></span>
+            </div>
+        </div>
+        <div class="thumbnail">
+            <a href="javascript:;" index="0">
+                <div> <img src="./photos/baymax01.jpg" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="1">
+                <div> <img src="./photos/baymax02.jpg" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="2">
+                <div> <img src="./photos/baymax03.jpg" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="3">
+                <div> <img src="./photos/baymax04.jpg" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="4">
+                <div> <img src="./photos/baymax05.jpg" alt="" /> </div>
+            </a>
+            <a href="javascript:;" index="5">
+                <div> <img src="img/icon_pdf.png" alt="" /> </div>
+            </a>
+        </div>
+        </div>
+    </div>
+    <img class="zv_loading" src="img/spinner.gif" style="display: none;">
+
+
+    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/zoom-viewer.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('.zv_viewer img').zoomViewer();
+
+        $alert = $('.zv_alert');
+
+        $wrapper = $('.js_zvWrapper');
+        // Button Click Control
+        $wrapper.find('.js_zoomIn').click(function() {
+            $('.zv_viewer img:visible').trigger('zoom-in');
+        });
+        $wrapper.find('.js_zoomOut').click(function() {
+            $('.zv_viewer img:visible').trigger('zoom-out');
+        });
+        $wrapper.find('.js_zoomZero').click(function() {
+            $('.zv_viewer img:visible').trigger('zoom-original');
+        });
+        $wrapper.find('.js_zoomFit').click(function() {
+            $('.zv_viewer img:visible').trigger('zoom-fit');
+        });
+        $wrapper.find('.js_rotateLeft').click(function() {
+            console.log('times');
+            $('.zv_viewer img:visible').trigger('rotate-left');
+        });
+        $wrapper.find('.js_rotateRight').click(function() {
+            $('.zv_viewer img:visible').trigger('rotate-right');
+        });
+
+        $('.thumbnail a').bind('click', function() {
+            $('.thumbnail a').removeClass('opacity50');
+            $(this).addClass('opacity50');
+            currentIndex = $(this).attr('index');
+            var previewWrap = $('.zv_viewer div');
+            previewWrap.hide();
+            previewWrap.eq(currentIndex).show();
+        });
+        $('.thumbnail a').eq(0).click();
+
+        $wrapper.find('.js_next').click(function() {
+            var $currentImg = $('.thumbnail a.opacity50');
+            if ($currentImg.attr('index') == $('.thumbnail a').length - 1) {
+                $alert.html('已到最后一张').stop(true, true).slideDown('fast').delay(1000).slideUp('normal');
+                return
+            }
+            $currentImg.next('a').click();
+        });
+        $wrapper.find('.js_prev').click(function() {
+            var $currentImg = $('.thumbnail a.opacity50');
+            if ($currentImg.attr('index') == 0) {
+                $alert.html('已到第一张').stop(true, true).slideDown('fast').delay(1000).slideUp('normal');
+                return
+            }
+            $currentImg.prev('a').click();
+        });
+
+        // 左、右按键切换图片
+        $(document).keyup(function(e) {
+            switch (e.keyCode) {
+                case 37:
+                    $wrapper.find('.js_prev').click();
+                    break;
+                case 39:
+                    $wrapper.find('.js_next').click();
+                    break;
+            }
+        });
+
+        // Mousewheel Event
+        $('.zv_viewer').bind('mousewheel', function(event) {
+            event.preventDefault();
+            if (event.wheelDelta > 0) {
+                $('.zv_viewer img:visible').trigger('zoom-out');
+            } else {
+                $('.zv_viewer img:visible').trigger('zoom-in');
+            }
+        });
+    })
+    </script>
+</body>
+
+</html>
