@@ -4,10 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Zoom Viewer Demo</title>
-    <!-- <link type="text/css" rel="stylesheet" href="http://dui.dooioo.com/public/css/main.css" /> -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="js/zoom-viewer.js"></script>
 </head>
 
 <body>
@@ -30,60 +27,50 @@
         </div>
         <div class="zv_viewer">
             <div class="zv_img loading-bg">
-                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/armor-up-baymax.png" alt="" />
+                <img class="zv_item" src="./photos/baymax01.jpg" alt="" />
             </div>
             <div class="zv_img loading-bg">
-                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/Baymax-big-hero-6-37210587-612-792.png" alt="" />
+                <img class="zv_item" src="./photos/baymax02.jpg" alt="" />
             </div>
             <div class="zv_img loading-bg">
-                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/Baymax-Wallpaper-HD1.jpg" alt="" />
+                <img class="zv_item" src="./photos/baymax03.jpg" alt="" />
             </div>
             <div class="zv_img loading-bg">
-                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/il_fullxfull.667456823_c6bs.jpg" alt="" />
+                <img class="zv_item" src="./photos/baymax04.jpg" alt="" />
             </div>
             <div class="zv_img loading-bg">
-                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/image.jpg" alt="" />
-            </div>
-            <div class="zv_img loading-bg">
-                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/Impressionist-style-iPhone-wallpaper-2.jpg" alt="" />
-            </div>
-            <div class="zv_img loading-bg">
-                <img class="zv_item" src="http://static_2015.jd-app.com/wallpaper/tumblr_neuiq8D0LB1tp9z29o1_1415660624_cover.jpg" alt="" />
+                <img class="zv_item" src="./photos/baymax05.jpg" alt="" />
             </div>
             <div class="zv_doc zv_item">非图片类型文件，请点击下载后查看：<span><a href="">文件名</a></span>
             </div>
         </div>
         <div class="thumbnail">
             <a href="javascript:;" index="0">
-                <div> <img src="http://static_2015.jd-app.com/wallpaper/armor-up-baymax.png" alt="" /> </div>
+                <div> <img src="./photos/baymax01.jpg" alt="" /> </div>
             </a>
             <a href="javascript:;" index="1">
-                <div> <img src="http://static_2015.jd-app.com/wallpaper/Baymax-big-hero-6-37210587-612-792.png" alt="" /> </div>
+                <div> <img src="./photos/baymax02.jpg" alt="" /> </div>
             </a>
             <a href="javascript:;" index="2">
-                <div> <img src="http://static_2015.jd-app.com/wallpaper/Baymax-Wallpaper-HD1.jpg" alt="" /> </div>
+                <div> <img src="./photos/baymax03.jpg" alt="" /> </div>
             </a>
             <a href="javascript:;" index="3">
-                <div> <img src="http://static_2015.jd-app.com/wallpaper/il_fullxfull.667456823_c6bs.jpg" alt="" /> </div>
+                <div> <img src="./photos/baymax04.jpg" alt="" /> </div>
             </a>
             <a href="javascript:;" index="4">
-                <div> <img src="http://static_2015.jd-app.com/wallpaper/image.jpg" alt="" /> </div>
+                <div> <img src="./photos/baymax05.jpg" alt="" /> </div>
             </a>
             <a href="javascript:;" index="5">
-                <div> <img src="http://static_2015.jd-app.com/wallpaper/Impressionist-style-iPhone-wallpaper-2.jpg" alt="" /> </div>
-            </a>
-            <a href="javascript:;" index="6">
-                <div> <img src="http://static_2015.jd-app.com/wallpaper/tumblr_neuiq8D0LB1tp9z29o1_1415660624_cover.jpg" alt="" /> </div>
-            </a>
-            <a href="javascript:;" index="7">
                 <div> <img src="img/icon_pdf.png" alt="" /> </div>
             </a>
         </div>
-        <!-- <div class="zv_doc" style="display: none;">非图片类型文件，请点击下载后查看：<span></span> -->
         </div>
-        <!--<div class="zv_alert"></div>-->
     </div>
     <img class="zv_loading" src="img/spinner.gif" style="display: none;">
+
+
+    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/zoom-viewer.js"></script>
     <script type="text/javascript">
     $(function() {
         $('.zv_viewer img').zoomViewer();
